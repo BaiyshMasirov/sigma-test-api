@@ -1,25 +1,45 @@
+using Microsoft.AspNetCore.HttpOverrides;
+using Serilog;
+using WebAPI;
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Configuration
+       .SetBasePath(Directory.GetCurrentDirectory())
+       .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+       .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+       .AddEnvironmentVariables();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+Log.Logger = new LoggerConfiguration()
+              .ReadFrom.Configuration(builder.Configuration)
+              .Enrich.FromLogContext()
+              .CreateLogger();
+
+builder.Host.UseSerilog();
+
+builder.Services.AddInfrastructure(builder.Configuration)
+                .AddSwaggerConfiguration()
+                .AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseStaticFiles();
+
+#if DEBUG
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sigma API v1"));
+#endif
+
+app.UseRouting();
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
+app.MapHealthChecks("/healthz");
 app.MapControllers();
-
 app.Run();

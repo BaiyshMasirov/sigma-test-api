@@ -1,4 +1,5 @@
-﻿using WebAPI.Infrastructure.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using WebAPI.Infrastructure.Entities;
 using WebAPI.Infrastructure.Interfaces;
 
 namespace WebAPI.Infrastructure.Services
@@ -12,19 +13,16 @@ namespace WebAPI.Infrastructure.Services
             _context = context;
         }
 
+        public async Task<Candidate> GetCandidateByEmailAsync(string email)
+         => await _context.Candidates.SingleOrDefaultAsync(x => x.Email == email);
+
         public void Create(Candidate entity)
-        {
-            _context.Candidates.Add(entity);
-        }
+         => _context.Candidates.Add(entity);
 
         public void Update(Candidate entity)
-        {
-            _context.Candidates.Update(entity);
-        }
+         => _context.Candidates.Update(entity);
 
-        public async Task Save()
-        {
-            await _context.SaveChangesAsync(new());
-        }
+        public async Task SaveAsync()
+         => await _context.SaveChangesAsync(new());
     }
 }
