@@ -1,5 +1,8 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
+using System.Reflection;
 using WebAPI;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -20,9 +23,14 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 builder.Services.AddInfrastructure(builder.Configuration)
+                .AddServices()
                 .AddSwaggerConfiguration()
+                .AddFluentValidationAutoValidation()
+                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
                 .AddControllers();
 
+builder.Services.AddHealthChecks();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseStaticFiles();

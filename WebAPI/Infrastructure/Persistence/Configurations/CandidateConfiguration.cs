@@ -10,8 +10,8 @@ namespace WebAPI.Infrastructure.Persistence.Configurations
         {
             builder.Property(p => p.FirstName).IsRequired();
             builder.Property(p => p.LastName).IsRequired();
-            builder.Property(p => p.Email).IsRequired().HasMaxLength(200);
-            builder.Property(p => p.Comment).IsRequired().HasMaxLength(3);
+            builder.Property(p => p.Email).IsRequired().HasMaxLength(50);
+            builder.Property(p => p.Comment).IsRequired().HasMaxLength(300);
         }
     }
 }

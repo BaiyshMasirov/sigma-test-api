@@ -21,7 +21,7 @@ namespace WebAPI
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IRepository<Candidate>, CandidateRepository>();
-            services.AddTransient<ICandidateService, CandidateService>();
+            services.AddScoped<ICandidateService, CandidateService>();
 
             return services;
         }

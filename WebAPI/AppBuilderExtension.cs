@@ -21,9 +21,9 @@ namespace WebAPI
 
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "sigma API v1",
+                    Title = "Sigma API v1",
                     Version = "v1",
-                    Description = "sigma REST API v1",
+                    Description = "Sigma REST API v1",
                 });
                 options.DescribeAllParametersInCamelCase();
             });

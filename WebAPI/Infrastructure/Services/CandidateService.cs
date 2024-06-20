@@ -29,7 +29,7 @@ namespace WebAPI.Infrastructure.Services
                 }
 
                 _candidateRepository.Create(GenerateCandidate(request));
-                await _candidateRepository.SaveAsync();
+                await _candidateRepository.SaveAsync("Success");
 
                 return Result.Success();
             }
