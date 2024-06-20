@@ -1,7 +1,7 @@
-﻿using WebAPI.Extensions.Entities;
-using WebAPI.Extensions.Interfaces;
+﻿using WebAPI.Infrastructure.Entities;
+using WebAPI.Infrastructure.Interfaces;
 
-namespace WebAPI.Extensions.Services
+namespace WebAPI.Infrastructure.Services
 {
     public class CandidateRepository : IRepository<Candidate>
     {

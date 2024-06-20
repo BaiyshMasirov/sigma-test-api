@@ -1,6 +1,6 @@
 ﻿using WebAPI.Extensions.Entities.Common;
 
-namespace WebAPI.Extensions.Interfaces
+namespace WebAPI.Infrastructure.Interfaces
 {
     internal interface IRepository<T> where T : BaseEntity
     {

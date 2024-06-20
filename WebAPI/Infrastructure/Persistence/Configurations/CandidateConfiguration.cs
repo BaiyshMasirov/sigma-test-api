@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using WebAPI.Extensions.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using WebAPI.Infrastructure.Entities;
 
-namespace WebAPI.Extensions.Persistence.Configurations
+namespace WebAPI.Infrastructure.Persistence.Configurations
 {
     public class CandidateConfiguration : IEntityTypeConfiguration<Candidate>
     {

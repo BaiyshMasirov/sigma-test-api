@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebAPI.Extensions.Entities;
+using WebAPI.Infrastructure.Entities;
 
-namespace WebAPI.Extensions.Interfaces
+namespace WebAPI.Infrastructure.Interfaces
 {
     public interface IAppEFContext
     {

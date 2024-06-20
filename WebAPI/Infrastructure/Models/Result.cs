@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Extensions.Models
+﻿namespace WebAPI.Infrastructure.Models
 {
     public record Result(bool Succeed, string[] Messages)
     {

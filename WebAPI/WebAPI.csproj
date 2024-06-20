@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\Enums\" />
-    <Folder Include="Infrastructure\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Infrastructure\Enums\" />
   </ItemGroup>
 
 </Project>

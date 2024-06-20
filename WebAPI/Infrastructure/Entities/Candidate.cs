@@ -1,6 +1,6 @@
 ﻿using WebAPI.Extensions.Entities.Common;
 
-namespace WebAPI.Extensions.Entities
+namespace WebAPI.Infrastructure.Entities
 {
     public class Candidate : BaseEntity
     {

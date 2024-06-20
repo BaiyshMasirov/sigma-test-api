@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using WebAPI.Extensions.Entities;
-using WebAPI.Extensions.Interfaces;
+using WebAPI.Infrastructure.Entities;
+using WebAPI.Infrastructure.Interfaces;
 
-namespace WebAPI.Extensions.Persistence
+namespace WebAPI.Infrastructure.Persistence
 {
     public class AppEFContext : DbContext, IAppEFContext
     {
